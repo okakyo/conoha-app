@@ -20,12 +20,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: prepare .ssh dir
-        run: mkdir -p .ssh && chmod 700 .ssh
-      - name: ssh key generate
-        run: echo "$SSH_KEY" > .ssh/id_rsa && chmod 600 .ssh/id_rsa
-        env:
-          SSH_KEY: ${{ secrets.SSH_KEY }}
+      - name: Install SSH Key for Deploy
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_SK }}
+          name: id_rsa 
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
       - name: Set Docker context
         run: |
           docker context create --default-stack-orchestrator=swarm --docker "host=ssh://${{secrets.SSH_USERNAME}}@${{secrets.SSH_HOST}}:${{secrets.SSH_PORT}}" remote
