@@ -20,16 +20,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Install SSH Key for Deploy
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.SK }}
-          name: id_rsa 
-          known_hosts: ${{ secrets.KNOWN_HOSTS }}
-      - name: Set Docker context
-        run: |
-          docker context create --default-stack-orchestrator=swarm --docker "host=ssh://${{secrets.SSH_USERNAME}}@${{secrets.SSH_HOST}}:${{secrets.SSH_PORT}}" remote
       - name: Deploy
-        run: |
-          docker-compose --context remote stop
-          docker-compose --context remote up --build -d 
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: whoami
+          
