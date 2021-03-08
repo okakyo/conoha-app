@@ -24,7 +24,7 @@ jobs:
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.SSH_SECRET_KEY }}
-          known_hosts: github.com ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDUnKS2DA4067nMN4R3YCsQtU6xwV9XRqkG/dfO+zuNYcj9+VdSM0KoOZOSEIKvCI1z471rxNyPGEWMyU7BzXg6khk08m7naiXFN1+ryIJbMvkmqrfujwDA9bOJYo8od+US4dpQletnKM1T7lyZMkRjMN5al5rN2/uv6ycxpu7VxQ9S1GFlNxoch9CkwUzqN2Qh5s/GnA5rVwGOxoKIeprVATma0AGWm9ZghZHlWhYDC4omiuW4oeUrnzeekVCfqbXw4y4OdPBSyeyPQgX5EZvocsIhT6CszePApcRDyCCTi2NSygYXKQh7XRJo/Con3/HtAdEWyl4N1pxvrLvnFwR+a1cvVEc5YC1hABk12fldJxw1DhLqcJa2EATtcUbNmdoccOBXyYuP5ZCFQloihIEk16INbnEm5VmC8wyWBfWGmuFmS9ioNTtD6R9cT+YfXmV7QPSl3BsYt/jS/KyGcLUSLNTA7WqGBL3yMVMfAEnhNhS2K3YFjzIW7L1lGCw++4ZT4P3cKPHDUbKZ3BsVSrlfkxpaKFz5x73GwGVJLZQ5lyH4AkuHFx7+OyrHzsMa3ACHgkGBs0Q8bJUjbemwXlb01xNOxd80Rybeq3GBW9sMPBkZSCwMIXNdeFNdgbtlY025XejvhX/L9uAsBuDcAWMxJpQYA1z6UEmiAPxf3O+cOQ==
+          known_hosts: ${{secrets.KNOWN_HOSTS}}
       - name: Set Docker context
         run: |
           docker context create --default-stack-orchestrator=swarm --docker "host=ssh://${{secrets.SSH_USERNAME}}@${{secrets.SSH_HOST}}:${{secrets.SSH_PORT}}" remote
