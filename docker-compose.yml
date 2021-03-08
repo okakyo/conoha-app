@@ -86,12 +86,16 @@ services:
   nginx:
     restart: always
     container_name: "conoha-nginx"
+    build: './docker/nginx'
+    depends_on: 
+      - api
+      - app
     tty: false
-    image: "nginx:latest"
+    image: "okakyo/conoha-nginx"
     ports:
       - 80:80
       - 443:443
     volumes:
       - ./docker/nginx:/etc/nginx
-    
+    command: [ "wait-for-it.sh", "sample_web1:80", "--", "./wait-for-it.sh", "sample_web2:80"]
 
