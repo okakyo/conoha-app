@@ -29,6 +29,6 @@ jobs:
           host:     ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key:      ${{ secrets.SSH_SECRET_KEY }}
-          port:     ${{ secrets.SSH_PORT }
+          port:     ${{ secrets.SSH_PORT }}
           script: |
             echo "HEllo World!"
