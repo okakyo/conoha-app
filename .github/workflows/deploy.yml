@@ -27,7 +27,7 @@ jobs:
           known_hosts: ${{secrets.KNOWN_HOSTS}}
       - name: Set Docker context
         run: |
-          docker context create --default-stack-orchestrator=swarm --docker "host=ssh://@$118.27.108.156:50762" remote
+          docker context create --default-stack-orchestrator=swarm --docker "host=ssh://okakyo@$118.27.108.156:50762" remote
       - name: Deploy
         run: |
           docker-compose --context remote stop
