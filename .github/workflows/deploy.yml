@@ -24,7 +24,7 @@ jobs:
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.SSH_SECRET_KEY }}
-          known_hosts: {{secrets.SSH_SECRET_KEY}}
+          known_hosts: ${{secrets.SSH_SECRET_KEY}}
       - name: Set Docker context
         run: |
           docker context create --default-stack-orchestrator=swarm --docker "host=ssh://${{secrets.SSH_USERNAME}}@${{secrets.SSH_HOST}}:${{secrets.SSH_PORT}}" remote
