@@ -31,5 +31,4 @@ jobs:
           docker context create --default-stack-orchestrator=swarm --docker "host=ssh://${{secrets.SSH_USERNAME}}@${{secrets.SSH_HOST}}:${{secrets.SSH_PORT}}" remote
       - name: Deploy
         run: |
-          docker-compose --context remote stop
-          docker-compose --context remote up --build -d 
+          ssh -p 50762 okakyo@118.27.108.156 whoami
