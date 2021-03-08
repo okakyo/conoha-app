@@ -27,9 +27,9 @@ jobs:
       - name: Install SSH Key for Deploy
         uses: shimataro/ssh-key-action@v2
         with:
-          private-key: ${{ secrets.SSH_SECRET_KEY }}
+          key: ${{ secrets.SSH_SECRET_KEY }}
           name: id_rsa
-          known-hosts: ${{ secrets.KNOWN_HOSTS }}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
       - name: Set Docker context
         run: |
           docker context create --default-stack-orchestrator=swarm --docker"host=ssh://${SSH_USERNAME}@{KNOWN_HOSTS}:${SSH_PORT}" remote
