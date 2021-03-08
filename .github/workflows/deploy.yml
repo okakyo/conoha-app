@@ -23,7 +23,7 @@ jobs:
       - name: Install SSH Key for Deploy
         uses: shimataro/ssh-key-action@v1
         with:
-          private_key: ${{ secrets.SSH_SECRET_KEY }}
+          private-key: ${{ secrets.SSH_SECRET_KEY }}
           name: id_rsa
       - name: Set Docker context
         run: |
