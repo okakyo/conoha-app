@@ -1,0 +1,7 @@
+/nest-app
+/next-prof
+
+.env.local
+.env
+docker/*
+!docker/nginx/
