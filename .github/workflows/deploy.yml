@@ -24,9 +24,15 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - name: Install SSH Key for Deploy
+        uses: shimataro/ssh-key-action@v2
+        with:
+          private-key: ${{ secrets.SSH_KEY }}
+          name: id_rsa
+          known-hosts: ${{ secrets.KNOWN_HOSTS }}
       - name: Set Docker context
         run: |
-          docker context create --default-stack-orchestrator=swarm --docker"host=ssh://${SSH_USERNAME}@{SSH_IP}:${SSH_PORT}" remote
+          docker context create --default-stack-orchestrator=swarm --docker"host=ssh://${SSH_USERNAME}@{SSH_KNOWN_HOSTS}:${SSH_PORT}" remote
       - name: Deploy
         run: |
           docker-compose --context remote stop
