@@ -4,3 +4,5 @@
 .env
 docker/*
 !docker/nginx/
+nest-app/
+next-prof

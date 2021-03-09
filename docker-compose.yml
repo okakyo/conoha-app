@@ -29,6 +29,7 @@ services:
     volumes: 
       - ./nest-app/src:/src
       - ./nest-app/schema.graphql:/schema.graphql
+     
 
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
