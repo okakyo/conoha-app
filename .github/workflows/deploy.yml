@@ -13,8 +13,8 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           key: ${{ secrets.SK }}
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.SSH_USERNAME}}
+          host: 118.27.108.156
+          username: okakyo
           port: ${{secrets.SSH_PORT}}
           script: |
             whoami
