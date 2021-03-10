@@ -13,9 +13,9 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           key: ${{ secrets.SK }}
-          host: 118.27.108.156
-          username: okakyo
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.SSH_USERNAME}}
           port: ${{secrets.SSH_PORT}}
           script: |
-            whoami
-            ls -al
+            cd conoha-app
+            git pull origin main

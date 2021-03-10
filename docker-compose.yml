@@ -1,7 +1,6 @@
 version: "3.7"
 services: 
   app:
-    restart: always
     build : "./next-prof"
     container_name: "conoha-front"
     image: "okakyo/conoha-front"
