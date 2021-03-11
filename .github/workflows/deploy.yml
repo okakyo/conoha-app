@@ -18,4 +18,6 @@ jobs:
           port: ${{secrets.SSH_PORT}}
           script: |
             cd conoha-app
+            docker-compose down 
             git pull origin main
+            
