@@ -1,6 +1,6 @@
 FROM nginx:latest
 COPY ./nginx.conf /etc/nginx/nginx.conf
-RUN sudo apt install -y certbot python3-certbot-nginx &&\
+RUN apt install -y certbot python3-certbot-nginx &&\
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
