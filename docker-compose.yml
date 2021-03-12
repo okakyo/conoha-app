@@ -73,14 +73,11 @@ services:
   nginx:
     
     container_name: "conoha-nginx"
-    build: 
-      context: ./docker/nginx
-      dockerfile: Dockerfile
     depends_on: 
       - api
       - app
     tty: false
-    image: "okakyo/conoha-nginx"
+    image: "nginx:latest"
     ports:
       - 80:80
       - 443:443
