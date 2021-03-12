@@ -12,7 +12,7 @@ services:
       - redis
     command: "npm run start"
     volumes:
-      - ./next-prof:/usr/src/app
+      - ./next-prof/src:/src
     environment:
       NODE_ENV: production
 
