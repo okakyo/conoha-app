@@ -75,7 +75,7 @@ services:
     container_name: "conoha-nginx"
     build: 
       context: ./docker/nginx
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile
     depends_on: 
       - api
       - app
