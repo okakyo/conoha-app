@@ -17,9 +17,6 @@ services:
 
   nginx:
     tty: false
-    build: 
-      context: './docker/nginx'
-      dockerfile: 'Dockerfile'
     volumes:
       - ./docker/nginx:/etc/nginx
     
