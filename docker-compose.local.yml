@@ -17,3 +17,10 @@ services:
 
   nginx:
     tty: false
+    build: 
+      dockerfile: './docker/nginx/Dockerfile'
+    volumes:
+      - ./docker/nginx:/etc/nginx
+    
+
+
