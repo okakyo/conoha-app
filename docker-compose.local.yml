@@ -16,7 +16,7 @@ services:
     tty: false
 
   nginx:
-    restart: always
+    restart: "no"
     tty: false
     volumes:
       - ./docker/nginx:/etc/nginx
