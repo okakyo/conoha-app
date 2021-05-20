@@ -1,52 +1,37 @@
 # docker-compose の立ち上げについてのコマンド一覧
 up:
-	docker-compose -f docker-compose.yml -f docker-compose.local.yml up 
+	docker compose up  
 
 build-up:
-	docker-compose -f docker-compose.yml -f docker-compose.local.yml up --build
+	docker compose up --build 
 
 build:
-	docker-compose -f docker-compose.yml -f docker-compose.local.yml build
+	docker compose build
 
 down:
-	docker-compose down
+	docker compose down
 
 # Docker のコンテナに入る時のコマンド
 
 api:
-	docker-compose exec api /bin/sh
+	docker compose exec api /bin/sh
 
 sql:
-	docker-compose exec db /bin/sh
+	docker compose exec db  mysql -uuser -p
 
 front:
-	docker-compose exec app /bin/sh
+	docker compose exec app /bin/sh
+
 redis:
-	docker-compose exec redis /bin/sh
+	docker compose exec redis /bin/sh
+
+log:
+	docker compose logs
 
 # マイグレーションについてのコマンド一覧
 
 migration-create:
-	docker-compose exec api  sh -c "npm run typeorm:migration:create"
+	docker compose exec api npx prisma migrate dev init 
 
-migration-generate:
-	docker-compose exec api  sh -c "npm run typeorm:migration:generate"
-
-migration-run:
-	docker-compose exec api  sh -c "npm run typeorm:migration:run"
-
-migration-revert:
-	docker-compose exec api  sh -c "npm run typeorm:migration:revert"
-
-seeding-run:
-	docker-compose exec api  sh -c "npm run typeorm:seed:run"
-
-schema-drop:
-	docker-compose exec api  sh -c "npm run typeorm:schema:drop"
-
-schema-sync:
-	docker-compose exec api  sh -c "npm run typeorm:schema:drop && npm run typeorm:migration:run && npm run typeorm:seed:run"
-
-# Next.js の操作についての一覧
-codegen:
-	docker-compose exec app sh -c "npm run codegen"
+db-seed:
+	docker compose exec api npx prisma db seed --preview-feature 

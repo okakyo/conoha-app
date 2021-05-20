@@ -1,7 +1,9 @@
 version: "3.7"
 services: 
   app:
-    build : "./next-prof"
+    build : 
+       context: "./frontend"
+       target: "base"
     container_name: "conoha-front"
     image: "okakyo/conoha-front"
     tty: false
@@ -10,40 +12,43 @@ services:
     depends_on:
       - api
       - redis
-    command: "npm run start"
+    command: "npm run dev"
     volumes:
-      - ./next-prof/src:/src
+      - ./frontend/src:/apps/base/src
+      - ./frontend/nuxt.config.js:/apps/base/nuxt.config.js
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
 
   api:
     restart: always
-    build : "./nest-app"
+    build : 
+      context: "./server"
+      target: "base"
     container_name: "conoha-app"
     image: "okakyo/conoha-app"
-    command: "npm run start"
+    command: "npm run dev"
     tty: false
     ports:
       - 3001:3000
     volumes: 
-      - ./nest-app/src:/src
-      - ./nest-app/schema.graphql:/schema.graphql
-     
-
+      - ./server/src:/apps/base/src
+      - ./server/dist:/apps/base/dist
+      - ./server/prisma:/apps/base/prisma
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USERNAME: ${MYSQL_USERNAME}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      DATABASE_URL: ${DATABASE_URL}
       REDIS_PORT: ${REDIS_PORT}
-      NODE_ENV: production
+      NODE_ENV: development
 
     depends_on:
       - db
+      
   db:
     restart: always
     image: "mariadb:latest"
-    tty: true
     container_name: conoha-maindb
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
@@ -63,25 +68,11 @@ services:
     restart: always
     image: redis:latest
     container_name: "conoha-redis"
-    tty: false
     volumes:
       - ./docker/redis/data:/data
     ports:
       - 63790:6379
     command: redis-server --appendonly yes
 
-  nginx:
-    
-    container_name: "conoha-nginx"
-    depends_on: 
-      - api
-      - app
-    tty: false
-    image: "nginx:latest"
-    ports:
-      - 80:80
-      - 443:443
-    volumes:
-      - ./docker/nginx:/etc/nginx
-      - /etc/letsencrypt:/etc/letsencrypt
+  
      
