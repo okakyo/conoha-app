@@ -30,8 +30,8 @@ log:
 
 # マイグレーションについてのコマンド一覧
 
-migration-create:
-	docker compose exec api npx prisma migrate dev init 
+create-migrate:
+	docker compose exec api npx prisma migrate dev  --name dev
 
-db-seed:
+seed:
 	docker compose exec api npx prisma db seed --preview-feature 

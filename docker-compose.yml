@@ -15,7 +15,6 @@ services:
     command: "npm run dev"
     volumes:
       - ./frontend/src:/apps/base/src
-      - ./frontend/nuxt.config.js:/apps/base/nuxt.config.js
     environment:
       NODE_ENV: development
 
@@ -73,6 +72,3 @@ services:
     ports:
       - 63790:6379
     command: redis-server --appendonly yes
-
-  
-     
