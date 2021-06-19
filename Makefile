@@ -1,6 +1,6 @@
 # docker-compose の立ち上げについてのコマンド一覧
 up:
-	docker compose up  
+	docker compose up  -d 
 
 build-up:
 	docker compose up --build 
@@ -35,3 +35,6 @@ create-migrate:
 
 seed:
 	docker compose exec api npx prisma db seed --preview-feature 
+
+migrate:
+	docker compose exec api npx prisma migrate deploy --preview-feature
