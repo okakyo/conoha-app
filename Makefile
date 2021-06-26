@@ -11,8 +11,6 @@ build:
 down:
 	docker compose down
 
-# Docker のコンテナに入る時のコマンド
-
 api:
 	docker compose exec api /bin/sh
 
