@@ -1,8 +1,8 @@
 
-
 .env.local
 .env
 docker/*
 !docker/nginx/
 nest-app/
 next-prof
+prisma/.env

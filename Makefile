@@ -36,3 +36,6 @@ seed:
 
 migrate:
 	docker compose exec api npx prisma migrate deploy --preview-feature
+
+studio:
+	docker compose exec api npx prisma studio 
