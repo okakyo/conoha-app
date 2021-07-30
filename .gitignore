@@ -6,3 +6,4 @@ docker/*
 nest-app/
 next-prof
 prisma/.env
+ml-server/*
