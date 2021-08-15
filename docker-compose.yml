@@ -44,8 +44,6 @@ services:
       DATABASE_URL: 'mysql://${MYSQL_USERNAME}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE}'
       REDIS_PORT: ${REDIS_PORT}
       NODE_ENV: development
-      
-
     depends_on:
       - db
       

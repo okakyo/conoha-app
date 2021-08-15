@@ -1,6 +1,6 @@
 # docker-compose の立ち上げについてのコマンド一覧
 up:
-	docker compose up  
+	docker compose up -d
 
 build-up:
 	docker compose up --build 
